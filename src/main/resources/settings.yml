@@ -1,0 +1,12 @@
+endpoint: xxx
+status: "aaaaaaaaaaaaaaaaaa"
+
+storageType: "MYSQL"
+mysql:
+    "jbcurl": "jbc:mysql://{host}:{port}/{database-name}"
+    "host" : "localhost"
+    "port" : "3306"
+    "user" : "ScrapyBot"
+    "password" : "ScrapyBot-password"
+    "database-name" : "ScrapyBot"
+    "pool-size" : "2"
