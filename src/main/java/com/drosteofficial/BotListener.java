@@ -1,6 +1,8 @@
 package com.drosteofficial;
 
 import com.drosteofficial.commands.CommandManager;
+import com.drosteofficial.entity.DiscordMessage;
+import com.drosteofficial.entity.MessageAction;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
@@ -22,13 +24,30 @@ public class BotListener extends ListenerAdapter {
     public BotListener(ScrapyBot scrapyBot) {
         this.scrapyBot = scrapyBot;
     }
+
+
+
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+        DiscordMessage discordMessage = new DiscordMessage(
+                event.getGuild().getId(),
+                event.getMessageId(),
+                event.getAuthor().getId(),
+                event.getChannel().getId(),
+                event.getMessage().getContentDisplay(),
+                event.getAuthor().getName(),
+                event.getMessage().getTimeCreated().toInstant(),
+                MessageAction.NEW
+        );
+
+        scrapyBot.getDiscordMessageCache().save(discordMessage);
+
         if (!Objects.requireNonNull(event.getMember()).isOwner()) {
             return;
         }
 
         if (!event.getMessage().getContentDisplay().toLowerCase().contains("update splash commands")) {
+
             return;
         }
         logger.info(String.format("Updating splash commands on %s command used by %s", event.getGuild().getName(), event.getMember().getNickname()));
@@ -40,6 +59,7 @@ public class BotListener extends ListenerAdapter {
         event.getGuild().updateCommands().queue();
 
         event.getMessage().reply(":wink:").queue();
+
     }
 
     @Override

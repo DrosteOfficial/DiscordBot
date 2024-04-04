@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -22,7 +23,7 @@ import java.io.*;
 public class Main {
     private final static Logger logger = LoggerFactory.getLogger("Main");
     public static void main(String[] args) {
-
+        Scanner scanner = new Scanner(System.in);
         BasicConfigurator.configure();
         File settingsFile = new File("settings.yml");
 
@@ -54,7 +55,18 @@ public class Main {
         scrapyBot.Init();
         scrapyBot.Start();
 
+        Thread thread1 = new Thread(()-> {
+            for(;;){
+                String input = scanner.nextLine();
+                var load =  scrapyBot.getDiscordMessageCache().getDataModel().load(Integer.parseInt(input));
+                logger.info(load.get().getContent());
+            }
+        });
+        thread1.start();
+
     }
+
+
 
 
 
