@@ -1,4 +1,4 @@
-package com.drosteofficial;
+package com.drosteofficial.Listeners;
 
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.emoji.Emoji;

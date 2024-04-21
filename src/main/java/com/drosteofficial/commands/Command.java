@@ -48,7 +48,7 @@ public abstract class Command extends ListenerAdapter {
         this.usage = usage;
     }
 
-    public CommandData getCommandData() {
+    public @NotNull CommandData getCommandData() {
         return commandData;
     }
 

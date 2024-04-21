@@ -11,5 +11,4 @@ public interface ICache<T,U>{
     boolean delete(U u);
     Future<Boolean> deleteFromDB(U u);
     Future<Boolean> save(T t );
-
 }

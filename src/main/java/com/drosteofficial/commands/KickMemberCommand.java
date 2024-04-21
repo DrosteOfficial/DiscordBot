@@ -25,7 +25,6 @@ public class KickMemberCommand extends Command {
     }
     @Override
     public void execute(@NotNull SlashCommandInteractionEvent event, TextChannel channel, Guild guild, Member member) {
-
         if (event.getMember().getUser().isBot() == true) {
             return;
         }
@@ -44,5 +43,6 @@ public class KickMemberCommand extends Command {
 
         guild.kick(memberToKick, reason).queue();
         event.reply("Member kicked").queue();
+
     }
 }

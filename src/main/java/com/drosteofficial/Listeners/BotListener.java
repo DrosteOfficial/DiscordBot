@@ -1,17 +1,14 @@
-package com.drosteofficial;
+package com.drosteofficial.Listeners;
 
-import com.drosteofficial.commands.CommandManager;
+import com.drosteofficial.ScrapyBot;
 import com.drosteofficial.entity.DiscordMessage;
 import com.drosteofficial.entity.MessageAction;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.events.message.MessageUpdateEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
 import java.util.Objects;
@@ -42,9 +39,9 @@ public class BotListener extends ListenerAdapter {
 
         scrapyBot.getDiscordMessageCache().save(discordMessage);
 
-        if (!Objects.requireNonNull(event.getMember()).isOwner()) {
-            return;
-        }
+//        if (!Objects.requireNonNull(event.getMember()).isOwner()) {
+//            return;
+//        }
 
         if (!event.getMessage().getContentDisplay().toLowerCase().contains("update splash commands")) {
 
